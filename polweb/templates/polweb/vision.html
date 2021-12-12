@@ -1,0 +1,17 @@
+{% extends 'polweb/base.html' %}
+    {% block content %}
+		<div class="main1">
+			<div class="blog-box-cnt">
+				<h1>ABOUT</h1>
+				<div class="blog-img-cnt">
+					<img src ="{{ kole.image.url }}" alt="pix">
+				</div>
+				<div class="blog-text-cnt">
+					<p>{{ kole.body }}</p>			
+				</div>
+			</div>	
+		</div>
+	
+	{% endblock content %}
+	
+</html>

@@ -1,0 +1,73 @@
+{% extends 'polweb/base.html' %}
+{% block content %}
+
+	<section id="blog">
+		<!-----blog heading------->
+		<div class="blog-heading">
+			<span>recent empowerment schemes</span>
+		</div>
+		<!------blog---------->
+		<div class="blog-container">
+			{% for p in page_obj %}
+			{% if p.image %}
+				
+				<div class="blog-box">
+					<div class="blog-img">
+					
+						<img src ="{{ p.image.url }}" alt="pix">
+					
+					</div>
+					<div class="blog-text">
+						<span>{{ p.time }}</span>
+						<a href="{% url 'empowerment-detail' p.pk %}" class="blog-title"> {{ p.title }}</a>
+						<p>{{ p.pos }}</p> 
+						<a href="{% url 'empowerment-detail' p.pk %}">Read More</a>			
+					</div>
+				</div>
+				
+
+					
+			{% else %}
+				<div class="blog-box">
+					<div class="blog-img">
+						<video width="250" height="250" controls><source src="{{ p.pro_video.url }}" type="video/mp4">
+						Your browser does not support the video tag.</video>
+					</div>
+					<div class="blog-text">
+						<span>{{ p.time }}</span>
+						<a href="{% url 'empowerment-detail' p.pk %}" class="blog-title"> {{ p.title }}</a>
+					
+						<a href="{% url 'empowerment-detail' p.pk %}">full screen</a>			
+					</div>
+				</div>
+				
+			{% endif %}
+			{% endfor %}
+	
+
+		</div>	
+	
+	</section>
+
+	<!---------------------	pagination----->
+	
+	<div class="pag">
+		<span class="step-links">
+			{% if page_obj.has_previous %}
+				<a href="?page={{ page_obj.previous_page_number }}">previous</a>
+			{% endif %}
+			<span class="current">
+				Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+				</span>
+				{% if page_obj.has_next %}
+				<a href="?page={{ page_obj.next_page_number }}">next</a>
+				{% endif %}
+		</span>
+	</div>
+	
+	
+
+
+{% endblock content %}
+	
+</html>

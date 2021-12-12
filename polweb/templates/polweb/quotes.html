@@ -1,0 +1,52 @@
+{% extends 'polweb/base.html' %}
+{% block content %}
+{% block header %}
+ <h2 class="first">Quotes</h2>
+{% endblock header %}
+
+ 
+ {% for ob in object_list %}
+ {% if ob.image %}
+	<div class="panel panel-default">
+			<div class="panel-heading">
+				<div>
+				<img src="{{ ob.image.url }}" alt="pic">
+				
+				<h3>
+					{{ ob.time|date:'M d, Y H:i' }}
+					</h3>
+			</div>
+		</div>
+		<div class="panel-body">
+			{{ ob.body|linebreaks }}
+		</div>
+	</div> <!-- panel -->
+
+ 
+ {% else %}
+
+	<div class="panel panel-default">
+			<div class="panel-heading">
+	
+				<h3>
+					{{ ob.time|date:'M d, Y H:i' }}
+					<small>
+		
+					</small>
+				</h3>
+			</div>
+		<div class="panel-body">
+	{{ ob.body|linebreaks }}
+		</div>
+	</div> <!-- panel -->
+
+ {%  endif %}
+ 
+   {% empty %}
+ There are no entries for this topic yet.
+ 
+ 
+ {% endfor %}
+	{% endblock content %}
+	
+</html>
